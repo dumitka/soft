@@ -1,5 +1,5 @@
 # Soft kompjuting na SIIT-u
-
+```
 TIM:
         Milica Đumić, sw-27-2018
         Tatjana Gavrilović, sw-53-2018
@@ -25,3 +25,4 @@ METODOLOGIJA:
 EVALUACIJA:
         Upoređivaćemo labele koje smo dodelili svakoj slici iz skupa podataka sa tim što smo dobile kao rezultat. Za svaku sliku ćemo odrediti koliko knjiga je detektovano – to će biti 1 bod ukoliko su sve zamišljene knjige i pronađene. Takođe za sve pravilno detektovane naslove, autore i izdavače ćemo dodeliti 1 bod. Kada sumiramo sve bodove podelićemo to sa brojem slika puta 2 i pomnožiti sa 100 kako bismo dobile procentualnu tačnost.
         sum((br_detektovanih_knjiga/tacan_br_knjiga)+sum(isti_naslov+isti_autor+isti_izdavac)/(3 * tacan_br_knjiga))*100/(2 * br_slika)
+```
