@@ -22,6 +22,7 @@ SKUP PODATAKA:
         neophodni podaci videli - naslov, autor, izdavač). Na jednoj slici će biti 1 ili više knjiga. Prikupljaćemo podatke
         u lokalnim bibliotekama i izdavačkim kućama da bismo imale raznovrsniji izbor knjiga. Kada istestiramo podatke,
         videćemo da li su rezultati prihvatljivi, a ukoliko ne budu povećaćemo skup podataka.
+	- Fotografije su iz fonda odelenja "Đura Daničić" Gradske biblioteke u Novom Sadu.
 
 METODOLOGIJA:
         1. Pretprocesiranje slike: morfološte operacije (erozija, dilacija), prebacivanje u grayscale i potencijalno
