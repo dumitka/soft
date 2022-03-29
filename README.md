@@ -22,21 +22,31 @@ SKUP PODATAKA:
         neophodni podaci videli - naslov, autor, izdavač). Na jednoj slici će biti 1 ili više knjiga. Prikupljaćemo podatke
         u lokalnim bibliotekama i izdavačkim kućama da bismo imale raznovrsniji izbor knjiga. Kada istestiramo podatke,
         videćemo da li su rezultati prihvatljivi, a ukoliko ne budu povećaćemo skup podataka.
-	- Fotografije su iz fonda odelenja "Đura Daničić" Gradske biblioteke u Novom Sadu.
+		- Fotografije su iz fonda odelenja "Đura Daničić" Gradske biblioteke u Novom Sadu, Biblioteke "Branko Radičević" u Derventi
+        	i  privatne fotografije nastale radi izrade projekta.
 
 METODOLOGIJA:
-        1. Pretprocesiranje slike: morfološte operacije (erozija, dilacija), prebacivanje u grayscale i potencijalno
-        korišćenje adaptivnog threshold-a.
-        2. Detekcija knjiga: pronalaženje kontura (pravougaonika). U slučaju da ova metoda ne bude davala zadovoljavajuće
-        rezultate ukoliko budemo u mogućnosti možemo probati da implamentiramo Hough transformacije.
-        3. Detekcija naslova, autora i izdavača: koristiće se ocr za detekciju slova. Takođe, iz razloga što su slova često
-        različito okrenuta, moguće je da će se u ovom koraku raditi i rotacija slike. Ukoliko bude potrebe, radićemo
-        detekciju celina kako bismo izdvojile odgovarajuće delove (naslov, autora i izdavača).
+        1. Pretprocesiranje slike: prebacivanje u grayscale.
+        2. Detekcija knjiga: upotreba hog deskriptora i metode predictiz biblioteke joblib.
+        3. Detekcija naslova, autora i izdavača: korišćena je rotacija slika, kao i metode iz biblioteke easyocr.
 
 EVALUACIJA:
-        Upoređivaćemo labele koje smo dodelili svakoj slici iz skupa podataka sa tim što smo dobile kao rezultat. Za svaku
-        sliku ćemo odrediti koliko knjiga je detektovano – to će biti 1 bod ukoliko su sve zamišljene knjige i pronađene.
-        Takođe za sve pravilno detektovane naslove, autore i izdavače ćemo dodeliti 1 bod. Kada sumiramo sve bodove
-        podelićemo to sa brojem slika puta 2 i pomnožiti sa 100 kako bismo dobile procentualnu tačnost.
-        sum((br_detektovanih_knjiga/tacan_br_knjiga)+sum(isti_naslov+isti_autor+isti_izdavac)/(3 * tacan_br_knjiga))*100/(2 * br_slika)
+        Tačnost sistema je određena dvema vrednostima:
+        1. Tačnost određivanja da li ima slika: 88.67%. 
+        	sum(predikcija_slike == labela_slike)/br_slika
+        	Posmatramo labele za svaku sliku iz test skupa, poredimo vrednost labele (0 ili 1) sa vrednošću predikcije za datu sliku.
+        	Na sumu dodamo 1 ukoliko smo za sliku tačno predvideli da li ima knjiga. Na kraju tu vrednost podelimo sa brojem slika. 
+        2. Tačnost određivanja reči: 81.2%. 
+        	sum(sum(nadjena_rec in lista_reci)/len(lista_reci))/tacne_slike
+        	Za sve slike na kojima smo tačno detektovali da ima knjiga proveravamo za svaku reč da li smo je našli na slici, to delimo
+        	sa brojem reči na slici i zatim dodajemo sumi za sve slike. Zatim tu sumu delimo brojem dobro labeliranih slika kako bismo 
+        	dobile konačnu tačnost.
+
+POKRETANJE:
+        Potrebno je uraditi pip install easyocr (i možda pip install "opencv-python-headless<4.3").
+        Potrebno je kopirati folder env/Lib/site-packages/joblib u folder env/Lib/site-packages/sklearn/externals.
+
+        Pokrenuti jupyter notebook i zatim projekat.ipynb. 
+
+	- Procene u vremenu su napravljene za računar sa 4 fizička jezgara i 16GB RAM-a.
 ```
