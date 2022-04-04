@@ -27,7 +27,7 @@ SKUP PODATAKA:
 
 METODOLOGIJA:
         1. Pretprocesiranje slike: prebacivanje u grayscale.
-        2. Detekcija knjiga: upotreba hog deskriptora i metode predictiz biblioteke joblib.
+        2. Detekcija knjiga: upotreba hog deskriptora i metode predict iz biblioteke joblib.
         3. Detekcija naslova, autora i izdavača: korišćena je rotacija slika, kao i metode iz biblioteke easyocr.
 
 EVALUACIJA:
